@@ -241,7 +241,7 @@ task run_starsolo {
             args_dict['--soloUMIdedup'] = '1MM_CR'
             args_dict['--outFilterScoreMin'] = '30'
             args_dict['--outSAMtype'] = ['BAM', 'SortedByCoordinate']
-            args_dict['--outSAMattributes'] = ['CR', 'UR', 'CY', 'UY', 'CB', 'UB']
+            args_dict['--outSAMattributes'] = ['CR', 'UR', 'CY', 'UY', 'CB', 'UB','NH' ,'HI', 'nM', 'AS' ,'GX', 'GN', 'sS' ,'sQ' ,'sM']
 
             if '~{assay}' in ['tenX_v3', 'tenX_multiome']:
                 args_dict['--soloCBstart'] = '1'
