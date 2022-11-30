@@ -142,7 +142,7 @@ task run_souporcell {
         python <<CODE
         from subprocess import check_call
 
-        souporcell_call_args = ['souporcell_pipeline.py', '-i', '~{input_bam}', '-b', 'result/~{sample_id}.barcodes.tsv', '-f', 'genome_ref/fasta/genome.fa', '-t', '~{num_cpu}', '-o', 'result', '-k', '~{num_clusters}']
+        souporcell_call_args = ['souporcell_pipeline.py', '-i', '~{input_bam}', '-b', 'result/~{sample_id}.barcodes.tsv', '-f', 'genome_ref/fasta/genome.fa', '-t', '~{num_cpu}', '-o', 'result', '-k', '~{num_clusters}','--ignore', 'True']
 
         if '~{de_novo_mode}' == 'false':
             assert '~{ref_genotypes}' != '', "Reference mode must have a reference genotype vcf file provided!"
