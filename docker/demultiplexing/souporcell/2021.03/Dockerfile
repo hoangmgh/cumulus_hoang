@@ -57,7 +57,7 @@ ENV PATH=/opt/souporcell:/opt/souporcell/troublet/target/release:$PATH
 RUN conda install -y python=3.6.13 && \
     conda install -y -c conda-forge mamba=0.17.0 && \
     mamba install -y -c conda-forge numpy=1.19.5 pandas=1.1.5 scipy=1.5.3 pyvcf=0.6.8 pystan=2.19.1.1 anndata=0.7.6 zarr=2.8.3 networkx=2.5.1 && \
-    mamba install -y -c bioconda pysam=0.16.0.1 pyfaidx=0.6.2 pegasusio=0.2.10
+    mamba install -y -c bioconda pysam=0.16.0.1 pyfaidx=0.6.2 pegasusio=0.2.10 scanpy
 
 RUN pip install stratocumulus==0.1.7
 
