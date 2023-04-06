@@ -26,6 +26,8 @@ workflow souporcell {
         String donor_rename
         # Only demultiplex cells/nuclei with at least <min_num_genes> expressed genes
         Int min_num_genes
+        Int? min_ref
+        Int? min_alt
         # Souporcell version to use
         String souporcell_version
         # Which docker registry to use
@@ -72,6 +74,8 @@ workflow souporcell {
             preemptible = preemptible,
             awsQueueArn = awsQueueArn,
             backend = backend
+            min_ref=min_ref,
+            min_alt=min_alt
     }
 
     call match_donors {
@@ -142,7 +146,7 @@ task run_souporcell {
         python <<CODE
         from subprocess import check_call
 
-        souporcell_call_args = ['souporcell_pipeline.py', '-i', '~{input_bam}', '-b', 'result/~{sample_id}.barcodes.tsv', '-f', 'genome_ref/fasta/genome.fa', '-t', '~{num_cpu}', '-o', 'result', '-k', '~{num_clusters}','--ignore', 'True']
+        souporcell_call_args = ['souporcell_pipeline.py', '-i', '~{input_bam}', '-b', 'result/~{sample_id}.barcodes.tsv', '-f', 'genome_ref/fasta/genome.fa', '-t', '~{num_cpu}', '-o', 'result', '-k', '~{num_clusters}','--ignore', 'True','--min_alt','~{min_alt}','--min_ref','~{min_ref}']
 
         if '~{de_novo_mode}' == 'false':
             assert '~{ref_genotypes}' != '', "Reference mode must have a reference genotype vcf file provided!"
